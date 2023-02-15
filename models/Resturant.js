@@ -1,22 +1,10 @@
 const mongoose = require("mongoose");
 const resturantSchema = new mongoose.Schema(
   {
-    email: {
-      type: String,
-      required: true,
-      unique: true,
+    ResturantOwnerId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "ResturantOwner",
     },
-    password: {
-      type: String,
-      required: true,
-    },
-    name: {
-      type: String,
-      required: true,
-    },
-    // avatar: {
-    //   type: String,
-    // },
   },
   {
     timestamps: true, // this fild is for tracking created and udated time checking
