@@ -1,7 +1,7 @@
 const Resturant = require("../../../models/Resturant");
 module.exports.index = async function (req, res) {
   try {
-    console.log("req.bod", req.body);
+    console.log("res", req);
     return res.json(200, {
       message: "connected successfully",
     });
