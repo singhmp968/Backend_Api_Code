@@ -1,4 +1,36 @@
 const Resturant = require("../../../models/Resturant");
+const ResturantOwner = require("../../../models/RestaurantOwner");
+
+module.exports.createNewResturant = async function (req, res) {
+  try {
+    console.log("reqBoDY - ", req.body);
+    const { email, resturantName } = req.body;
+    console.log("email", email);
+    let resturantOwner = await ResturantOwner.findOne({
+      ownerEmail: email,
+    });
+    if (resturantOwner == null) {
+      return res.json(500, {
+        message: "not found",
+      });
+    }
+
+    console.log("resturantOwner---", resturantOwner);
+    await Resturant.create({
+      resturantName: resturantName,
+      ResturantOwnerId: resturantOwner._id,
+    });
+    return res.json(200, {
+      message: "connected successfully",
+    });
+  } catch (error) {
+    console.log("error=>", error);
+    return res.json(500, {
+      message: "Internal server Error",
+    });
+  }
+};
+
 module.exports.index = async function (req, res) {
   try {
     console.log("res", req);
@@ -25,17 +57,4 @@ module.exports.index = async function (req, res) {
   //     message: "List of Post",
   //     posts: posts,
   //   }); // whe
-};
-module.exports.createNewMenu = async function (req, res) {
-  try {
-    console.log("req---", req.body);
-    return res.json(200, {
-      message: "connected successfully",
-    });
-  } catch (error) {
-    console.log("error=>", error);
-    return res.json(500, {
-      message: "Internal server Error",
-    });
-  }
 };

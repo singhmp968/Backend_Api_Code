@@ -6,10 +6,10 @@ const MenuSchema = new mongoose.Schema(
       required: true,
     },
     price: {
-      type: String,
+      type: Number,
       required: true,
     },
-    ResturantOwnerId: {
+    resturantId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Resturant",
       required: true,

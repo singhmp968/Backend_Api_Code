@@ -40,7 +40,7 @@ module.exports.createNewResturantOwner = async function (req, res) {
  */
 module.exports.createsessionRestOwner = async function (req, res) {
   try {
-    console.log("req---", req.body);
+    // console.log("req---", req.body);
 
     let resturantOwner = await ResturantOwner.findOne({
       ownerEmail: req.body.email,

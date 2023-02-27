@@ -4,5 +4,6 @@ const router = express.Router();
 
 router.use("/resturant", require("./resturant"));
 router.use("/resturantOwner", require("./resturantOwner"));
+router.use("/menu", require("./MenuRoute"));
 
 module.exports = router;
